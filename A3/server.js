@@ -13,6 +13,8 @@
 const siteData = require("./modules/data-service");
 const express = require("express");
 const path = require("path");
+require("pg");
+const Sequelize = require("sequelize");
 const HTTP_PORT = process.env.PORT || 8080; // assign a port
 const app = express();
 
@@ -20,6 +22,7 @@ const app = express();
 
 // Ensure the server starts only after siteData.initialize() completes
 siteData.initialize().then(() => {
+    app.set('views', __dirname + '/views');
     app.get("/", (req, res) => {
         //res.send("Assignment 2: Khanh Anh Kiet Nguyen - 170049233");
         res.sendFile(path.join(__dirname,"views","home.html"));
