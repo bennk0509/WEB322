@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>InC-As3</title>
+  </head>
+
+  <body>
+    <h1>Handling Asynchronous Operations</h1>
+
+    <br /><br />
+
+    <h3>
+      <input id="operand_a" type="text" placeholder="operand_a" /> ➕
+
+      <input id="operand_b" type="text" placeholder="operand_b" /> =
+
+      <input id="sum" type="number" placeholder="SUM" disabled />
+    </h3>
+
+    <br />
+
+    <h3>
+      Calculate SUM: &nbsp;&nbsp;
+
+      <button onclick="start1()">Start (Approach 1)</button>
+    </h3>
+
+    <br />
+    <hr />
+    <br />
+
+    <h3>
+      <input id="operand_c" type="number" placeholder="operand_c" /> ✖
+
+      <input id="operand_d" type="number" placeholder="operand_d" /> =
+
+      <input id="product" type="number" placeholder="PRODUCT" readonly />
+    </h3>
+
+    <br />
+
+    <h3>
+      Calculate PRODUCT: &nbsp;&nbsp;
+
+      <button onclick="start2()">Start (Approach 2)</button>
+    </h3>
+
+    <script>
+
+      // Calculate SUM
+      function calculateSum(displaySum)
+      {
+        setTimeout(() => {
+        let sum = document.querySelector("#operand_a").value*1 + document.querySelector("#operand_b").value*1;
+        displaySum(sum);
+        }, 300);
+      }
+
+      function displaySum(sum) {
+
+          document.querySelector("#sum").value = sum;
+
+      }
+
+
+      function start1() {
+        let sum = calculateSum(displaySum);
+        console.log("sum calculated:", sum); // for debugging
+      };
+
+
+      // Calculate PRODUCT
+
+    function calculateProduct() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+            resolve(document.querySelector("#operand_c").value * document.querySelector("#operand_d").value); 
+        }, 350);
+        })
+
+      }
+
+
+      function displayProduct(result) {
+        document.querySelector("#product").value = result;
+      }
+
+
+    async function start2() {
+        try{
+            let product = await calculateProduct();
+            console.log("Product calculated:", product); // for debugging
+            displayProduct(product);
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+      };
+    </script>
+  </body>
+</html>

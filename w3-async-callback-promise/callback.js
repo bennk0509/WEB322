@@ -1,11 +1,16 @@
-function greeting(name,callback)
+function calculateSum(displaySum)
 {
-  console.log(`Hello ${name}!!! Nice to see you!!!!!`);
-  callback(name);
+  setTimeout(() =>
+  {
+    let sum = 5 + 3;
+    displaySum(sum);
+  },350)
 }
 
-function goodbye(name){
-  console.log(`Byeeeee ${name}!!!!!!`);
+function displaySum(sum)
+{
+  console.log(sum);
 }
 
-greeting("Khanh", goodbye);
+
+let sum = calculateSum(displaySum);
