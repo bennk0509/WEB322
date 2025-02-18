@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <style>
+      .hero-adjusted {
+      min-height: calc(100vh - 5rem);
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded",()=>{
+        fetch("/regions")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(regions => {
+            const dropdown = document.getElementById("region-drop-down");
+            dropdown.innerHTML = ""; // Clear existing items
+            regions.forEach(region => {
+                const list = document.createElement("li");
+                //create link
+                const link = document.createElement("a");
+                link.href = `/sites?region=${encodeURIComponent(region)}`;
+                list.className = "block px-4 py-2";
+                link.textContent = region;
+                list.appendChild(link);
+                dropdown.appendChild(list);
+            });
+        })
+        .catch(error => console.error("Error fetching regions:", error));
+        fetch("/sites")
+          .then(response => response.json())
+          .then(sites => {
+            const cardElements = document.querySelectorAll(".card");
+
+            cardElements.forEach(card => {
+              const titleElement = card.querySelector(".card-title");
+              const detailsButton = card.querySelector(".btn-primary");
+
+              if (titleElement && detailsButton) {
+                const siteName = titleElement.textContent.trim();
+                const matchedSite = sites.find(site => site.site === siteName);
+
+                if (matchedSite) {
+                  detailsButton.href = `/sites/${matchedSite.siteId}`;
+                } else {
+                  console.warn(`No matching site found for "${siteName}"`);
+                }
+              }
+            });
+          })
+          .catch(error => console.error("Error fetching sites:", error));
+      });
+
+    </script>
+</head>
+<body>
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a href="/" class="btn btn-ghost text-xl">
+        <span>National Historic Sites</span> 
+        <img src="/img/flag-for-flag-canada-svgrepo-com.svg" class="w-10">
+      </a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/about">About</a></li>
+        <li>
+          <details>
+            <summary>Region</summary>
+            <ul id="region-drop-down" 
+            class="absolute bg-base-100 rounded-t-none p-2 mt-1 max-h-80 w-52 right-0 shadow-lg">
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container mx-auto p-4">
+    <!-- Hero Component -->
+    <div class="hero hero-adjusted bg-base-200 p-6 rounded w-full"
+      style="background-image: url(/img/hermes-rivera-ahHn48-zKWo-unsplash.jpg);">
+      <div class="hero-content text-center">
+        <div class="max-w">
+          <h1 class="text-5xl font-bold text-white">Explore Our Historic Sites</h1>
+          <p class="py-6 text-white">
+            Discover the rich heritage and fascinating history behind our national historic sites.
+          </p>
+          <a href="/sites" class="btn btn-primary">Explore Sites</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Responsive Grid with Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
+            <!-- Card 1 -->
+      <div>
+        <div class="card bg-base-100 shadow-xl">
+          <figure>
+            <img class="w-full" src="/img/320px-Hôtel_de_ville_de_Westmount.jpg" alt="Public Grounds of the Parliament Buildings" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Westmount District</h2>
+            <p>The historic district of Westmount which epitomizes the architectural styles and trends 
+              in landscape architecture of 1890 to 1930; reflects the efforts of local citizens who, 
+              from the early 20th century onwards, sought to protect the diversity and historic integrity 
+              of the district's built environment</p>
+            <p><strong>Date:</strong> 1874 (<em>city incorporated</em>)</p>
+            <p><strong>Location:</strong> Westmount, QC</p>
+            <div class="card-actions justify-end">
+              <a href="" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div>
+        <div class="card bg-base-100 shadow-xl">
+          <figure>
+            <img class="w-full" src="/img/download.jpg" alt="Fort York National Historic Site" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Public Grounds of the Parliament Buildings</h2>
+            <p>The focal point for national celebrations in Ottawa; 
+              the grounds were originally designed by Calvert Vaux, 
+              and since supplemented by 18 monuments and memorials</p>
+            <p><strong>Date:</strong> 1875 (<em>(initial completion)</em>)</p>
+            <p><strong>Location:</strong> Ottawa, ON</p>
+            <div class="card-actions justify-end">
+              <a href="" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div>
+        <div class="card bg-base-100 shadow-xl">
+          <figure>
+            <img class="w-full" src="/img/Press_Building,_CNE_2008.jpg" alt="Louis Riel National Historic Site" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Gouinlock Buildings / Early Exhibition Buildings</h2>
+            <p>Five buildings (the Fire Hall/Police Station, Government Building, Horticulture Building, 
+              Music Building and Press Building) on the grounds of the Canadian National Exhibition; 
+              the largest and finest group of early 20th century exhibition buildings in Canada</p>
+            <p><strong>Date:</strong> 1912 (<em>completed</em>)</p>
+            <p><strong>Location:</strong> Toronto, ON</p>
+            <div class="card-actions justify-end">
+              <a href="" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
