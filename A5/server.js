@@ -15,8 +15,11 @@ const siteData = require("./modules/data-service");
 const express = require("express");
 const path = require("path");
 const HTTP_PORT = process.env.PORT || 8080; // assign a port
+require('pg'); // explicitly require the "pg" module
 const Sequelize = require('sequelize');
 
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
 express.urlencoded({extended:true})
 const app = express();
 app.use(express.urlencoded({ extended: true })); // Built-in middleware for form data (key=value)
