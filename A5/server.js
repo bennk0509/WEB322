@@ -18,10 +18,10 @@ const HTTP_PORT = process.env.PORT || 8080; // assign a port
 require('pg'); // explicitly require the "pg" module
 const Sequelize = require('sequelize');
 
-app.set('views', __dirname + '/views');
-app.use(express.static(__dirname + '/public'));
 express.urlencoded({extended:true})
 const app = express();
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true })); // Built-in middleware for form data (key=value)
 app.use(express.json()); // For parsing JSON data
 
