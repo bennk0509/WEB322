@@ -1,12 +1,15 @@
 /********************************************************************************
-*  WEB322 – Assignment 02
+*  WEB322 – Assignment 05
 * 
 *  I declare that this assignment is my own work in accordance with Seneca's
 *  Academic Integrity Policy:
 * 
 *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 * 
-*  Name: Khanh Anh Kiet Nguyen Student ID: 170049233 Date: Feb 4th, 2025
+*   Name: Khanh Anh Kiet Nguyen 
+    Student ID: 170049233 
+    Date: March 25th, 2025
+    Website: https://web-322-5pi6.vercel.app/sites
 *
 ********************************************************************************/
 
