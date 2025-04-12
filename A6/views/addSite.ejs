@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Site</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar (same as home.html) -->
+    <%- include('partials/navbar', {page: '/addSite'}) %>
+    <!-- 404 Hero Section -->
+    <!-- <div class="hero bg-base-200 p-6 rounded">
+        <div class="hero-content text-center ">
+            <div class="max-w-md">
+              <h1 class="text-5xl font-bold">Add Site</h1>
+              <p class="py-6">Use the below form to add a new NH Site to the collection </p>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container mx-auto p-4"> 
+        <div class="hero bg-base-200 p-6 rounded">
+            <div class="hero-content text-center ">
+                <div class="max-w-md">
+                  <h1 class="text-5xl font-bold">Add Site</h1>
+                  <p class="py-6">Use the below form to add a new NH Site to the collection </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM START FROM HERE -->
+    <form action="/addSite" method="POST" class="p-6 bg-white rounded-xl shadow-lg w-full ">
+
+        <div class="grid grid-cols-3 gap-5">
+            <div class="form-control mb-4 grid-cols-1">
+                <label for="siteId" class="label">
+                  <span class="label-text font-medium">Site ID</span>
+                </label>
+                <input type="text" id="siteId" name="siteId" required class="input input-bordered w-full">
+            </div>
+
+            <!-- site -->
+        <div class="form-control mb-4">
+            <label for="site" class="label">
+              <span class="label-text font-medium">Site Name</span>
+            </label>
+            <input type="text" id="site" name="site" required class="input input-bordered w-full">
+          </div>
+        
+          <!-- image -->
+          <div class="form-control mb-4">
+            <label for="image" class="label">
+              <span class="label-text font-medium">Image URL</span>
+            </label>
+            <input type="url" id="image" name="image" required class="input input-bordered w-full">
+          </div>
+        
+          <!-- date -->
+          <div class="form-control mb-4">
+            <label for="date" class="label">
+              <span class="label-text font-medium">Date</span>
+            </label>
+            <input type="number" id="date" name="date" required class="input input-bordered w-full">
+          </div>
+        
+          <!-- dateType -->
+          <div class="form-control mb-4">
+            <label for="dateType" class="label">
+              <span class="label-text font-medium">Date Type</span>
+            </label>
+            <input type="text" id="dateType" name="dateType" required class="input input-bordered w-full">
+          </div>
+        
+          <!-- designated -->
+          <div class="form-control mb-4">
+            <label for="designated" class="label">
+              <span class="label-text font-medium">Designated</span>
+            </label>
+            <input type="number" id="designated" name="designated" required class="input input-bordered w-full">
+          </div>
+        
+          <!-- location -->
+          <div class="form-control mb-4">
+            <label for="location" class="label">
+              <span class="label-text font-medium">Location</span>
+            </label>
+            <input type="text" id="location" name="location" required class="input input-bordered w-full">
+          </div>
+        
+          <!-- provinceOrTerritoryCode -->
+          <div class="form-control mb-4">
+            <label for="latitude" class="label">
+              <span class="label-text font-medium">Province/Territory</span>
+            </label>
+            <select class="select" id="provinceOrTerritoryCode" name="provinceOrTerritoryCode">
+                <option disabled selected>Please choose a province</option>
+                <% provincesAndTerritories.forEach( prov => {%>
+                  <option value="<%= prov.code %>">
+                    <%= prov.name %>
+                  </option>
+                <%})%>
+              </select>
+          </div>
+          
+        
+          <!-- latitude -->
+          <div class="form-control mb-4">
+            <label for="latitude" class="label">
+              <span class="label-text font-medium">Latitude</span>
+            </label>
+            <input type="number" id="latitude" name="latitude" step="0.00000001" required class="input input-bordered w-full">
+          </div>
+        
+          <!-- longitude -->
+          <div class="form-control mb-4">
+            <label for="longitude" class="label">
+              <span class="label-text font-medium">Longitude</span>
+            </label>
+            <input type="number" id="longitude" name="longitude" step="0.00000001" required class="input input-bordered w-full">
+          </div>
+
+          <!-- description -->
+          <div class="form-control mb-4">
+            <label for="description" class="label">
+              <span class="label-text font-medium">Description</span>
+            </label>
+            <textarea id="description" name="description" rows="4" class="textarea textarea-bordered w-full"></textarea>
+          </div>
+        
+        </div>
+
+        <div class="form-control mt-6">
+            <button type="submit" class="btn btn-primary w-full">Submit</button>
+          </div>
+      </form>
+    </div>
+      
+
+</body>
+</html>

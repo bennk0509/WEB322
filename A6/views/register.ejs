@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="h-screen grid grid-cols-2">
+        <div>
+            <img class="h-screen w-full" src="/img/lrbackground.jpg">
+        </div>
+        <div class="flex min-h-full flex-col justify-center px-10 py-12 lg:px-10 bg-white">
+            <div class="mb-10">
+                <h1 class="font-bold text-3xl mb-4">
+                  Create Your New Account
+                </h1>
+                <p class="text-sm text-gray-600">
+                  Already register?
+                  <a href="/login" class="font-medium text-indigo-600 hover:underline">
+                    Login here
+                  </a>
+                </p>
+              </div>
+            <div>
+                <% if (!successMessage) { %>
+                <form action="/register" method="POST" class="space-y-6 w-full">
+                    <!-- Username -->
+                    <div>
+                        <label for="userName" class="block text-sm font-medium text-gray-900">Username</label>
+                        <div class="mt-2">
+                        <input
+                            type="text"
+                            name="userName"
+                            id="username"
+                            autocomplete="username"
+                            required
+                            class="block w-full rounded-md border border-gray-950 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600"
+                        />
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div>
+                      <label for="email" class="block text-sm font-medium text-gray-900">Email address</label>
+                      <div class="mt-2">
+                        <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          autocomplete="email"
+                          required
+                          class="block w-full rounded-md border border-gray-950 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600"
+                        />
+                      </div>
+                    </div>
+                  
+                    <!-- Password -->
+                    <div>
+                      <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
+                      <div class="mt-2 relative">
+                        <input
+                          type="password"
+                          name="password"
+                          id="password"
+                          autocomplete="new-password"
+                          required
+                          class="pr-7 block w-full rounded-md border border-gray-950 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600"
+                        />
+
+                        <!-- Eye Icon -->
+                        <button type="button" id="togglePassword" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600">
+                          <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                          <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.27-2.944-9.542-7a10.05 10.05 0 012.292-3.95M15 12a3 3 0 00-4.8-2.4m-1.4 1.4a3 3 0 004.8 2.4m0 0l2.5 2.5m-10-10l10 10" />
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Password rules -->
+                      <ul class="mt-2 space-y-1 text-sm text-gray-700 hidden" id="passwordRules">
+                        <li id="rule-length" class="flex items-center gap-2 text-red-600" data-label="At least 8 characters">
+                         At least 8 characters
+                        </li>
+                        <li id="rule-upper" class="flex items-center gap-2 text-red-600" data-label="At least one uppercase letter">
+                         At least one uppercase letter
+                        </li>
+                        <li id="rule-number" class="flex items-center gap-2 text-red-600" data-label="At least one number">
+                         At least one number
+                        </li>
+                    </ul>
+                    </div>
+                  
+                    <!-- Confirm Password -->
+                    <div>
+                      <label for="confirmPassword" class="block text-sm font-medium text-gray-900">Confirm Password</label>
+                      <div class="mt-2 relative">
+                        <input
+                          type="password"
+                          name="password2"
+                          id="confirmPassword"
+                          autocomplete="new-password"
+                          required
+                          class="pr-7 block w-full rounded-md border border-gray-950 px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600"
+                        />
+                        <p id="confirmError" class="mt-1 text-sm text-red-600 hidden">Passwords do not match</p>
+                        <!-- Eye Icon -->
+                        <button type="button" id="toggleConfirm" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600">
+                          <svg id="eyeOpenConfirm" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                          <svg id="eyeClosedConfirm" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.27-2.944-9.542-7a10.05 10.05 0 012.292-3.95M15 12a3 3 0 00-4.8-2.4m-1.4 1.4a3 3 0 004.8 2.4m0 0l2.5 2.5m-10-10l10 10" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  
+                    <!-- Submit Button -->
+                    <div>
+                      <button
+                        type="submit"
+                        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      >
+                        Register
+                      </button>
+                    </div>
+                  </form>
+                <% if (errorMessage) { %>
+                    <div class="alert alert-error mt-4 flex items-center gap-2 text-red-700 bg-red-100 border border-red-300 rounded px-4 py-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current h-5 w-5" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span><%= errorMessage %></span>
+                    </div>
+                <% } %>  
+                <% } else { %>
+                    <div class="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span><%= successMessage %></span>
+                    </div><br />
+                    <a href="/login" class="btn btn-success">
+                        Proceed to Log in
+                    </a>
+                <% } %>                               
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const form = document.querySelector('form');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const confirmError = document.getElementById('confirmError');
+      
+        form.addEventListener('submit', function (e) {
+          if (password.value !== confirmPassword.value) {
+            e.preventDefault(); // stop form submission
+            confirmError.classList.remove('hidden'); // show error
+            confirmPassword.classList.add('border-red-500'); // highlight input red
+          } else {
+            confirmError.classList.add('hidden'); // hide error if matched
+            confirmPassword.classList.remove('border-red-500');
+          }
+        });
+
+        const ruleLength = document.getElementById('rule-length');
+        const ruleUpper = document.getElementById('rule-upper');
+        const ruleNumber = document.getElementById('rule-number');
+
+        password.addEventListener('input', () => {
+            const value = password.value;
+
+            if (value.length > 0) {
+            passwordRules.classList.remove('hidden'); // show rules
+            } else {
+            passwordRules.classList.add('hidden'); // hide rules
+            }
+
+            const isLength = value.length >= 8;
+            const hasUpper = /[A-Z]/.test(value);
+            const hasNumber = /[0-9]/.test(value);
+            updateRule(ruleLength, isLength);
+            updateRule(ruleUpper, hasUpper);
+            updateRule(ruleNumber, hasNumber);
+        });
+
+        function updateRule(element, isValid) {
+            const label = element.getAttribute('data-label');
+            if (isValid) {
+            element.classList.remove('text-red-600');
+            element.classList.add('text-green-600');
+            element.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#314D1C"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>' + label; // keep text, replace icon
+            } else {
+            element.classList.remove('text-green-600');
+            element.classList.add('text-red-600');
+            element.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>' + label;
+            }
+        }
+        
+
+        // Toggle Password
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+        const eyeOpen = document.getElementById("eyeOpen");
+        const eyeClosed = document.getElementById("eyeClosed");
+
+        togglePassword.addEventListener("click", () => {
+          const isHidden = passwordInput.type === "password";
+          passwordInput.type = isHidden ? "text" : "password";
+          eyeOpen.classList.toggle("hidden", !isHidden);
+          eyeClosed.classList.toggle("hidden", isHidden);
+        });
+
+        // Toggle Confirm Password
+        const confirmInput = document.getElementById("confirmPassword");
+        const toggleConfirm = document.getElementById("toggleConfirm");
+        const eyeOpenConfirm = document.getElementById("eyeOpenConfirm");
+        const eyeClosedConfirm = document.getElementById("eyeClosedConfirm");
+
+        toggleConfirm.addEventListener("click", () => {
+          const isHidden = confirmInput.type === "password";
+          confirmInput.type = isHidden ? "text" : "password";
+          eyeOpenConfirm.classList.toggle("hidden", !isHidden);
+          eyeClosedConfirm.classList.toggle("hidden", isHidden);
+        });
+    </script>
+</body>
+</html>
+

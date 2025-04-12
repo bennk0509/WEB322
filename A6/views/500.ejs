@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 ERROR</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar (same as home.html) -->
+    <%- include('partials/navbar', {page: '404'}) %>
+    <!-- 404 Hero Section -->
+    <section class="hero min-h-screen bg-base-200 flex items-center justify-center">
+        <div class="text-center">
+            <h1 class="text-9xl font-bold text-red-600">500</h1>
+            <p class="text-xl mt-4"><%= message %></p>
+            <a href="/" class="btn btn-primary mt-4">Go Home</a>
+        </div>
+    </section>
+
+</body>
+</html>

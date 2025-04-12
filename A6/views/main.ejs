@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="/public/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center gap-x-4">
+      <div class="shrink-0">
+        <img class="size-12" src="/img/logo.svg" alt="ChitChat Logo">
+      </div>
+      <div>
+        <div class="text-xl font-medium text-black">ChitChat</div>
+        <p class="text-slate-500">You have a new message!</p>
+      </div>
+    </div>
+
+
+    <button class="btn btn-primary">Button</button>
+
+    <div class="navbar bg-base-100">
+      <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+      </div>
+    
+      <div class="navbar-center flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a>Link</a></li>
+          <li>
+            <details>
+              <summary>Parent</summary>
+              <ul class="p-2 bg-base-100 right-0">
+                <li><a>Link 1</a></li>
+                <li><a>Link 2</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost sm:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+      </label>
+      <ul tabindex="0" class="menu menu-sm dropdown-content right-0 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li><a>Link</a></li>
+        <li>
+          <details>
+            <summary>
+              Parent
+            </summary>
+            <ul class="p-2 bg-base-100">
+              <li><a>Link 1</a></li>
+              <li><a>Link 2</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+
+    <form>
+      <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="label"><span class="label-text">Name</span></label>
+            <input
+              class="input input-bordered w-full"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Message</span></label>
+            <textarea
+              class="textarea textarea-bordered w-full"
+              id="message"
+              name="message"
+              placeholder="Enter your message"
+            ></textarea>
+          </div>
+          <div>
+            <label class="label"><span class="label-text">Fast Food</span></label>
+            <select class="select select-bordered w-full">
+              <option disabled selected>Fast Food</option>
+              <option>Pizza</option>
+              <option>Hamburger</option>
+            </select>
+          </div>
+          <div>
+            <label class="label cursor-pointer justify-normal">
+              <input type="radio" name="pets" class="radio" /> <span class="label-text px-2">Dogs</span>
+            </label>
+            <label class="label cursor-pointer justify-normal">
+              <input type="radio" name="pets" class="radio" checked />
+              <span class="label-text px-2">Cats</span>
+            </label>
+          </div>
+          <div>
+            <label class="label cursor-pointer justify-normal">
+              <input type="checkbox" name="active" class="checkbox" />
+              <span class="label-text px-2">Active</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+    <footer class="footer bg-neutral text-neutral-content p-10">
+        <nav>
+          <h6 class="footer-title">Services</h6>
+          <a class="link link-hover">Branding</a>
+          <a class="link link-hover">Design</a>
+          <a class="link link-hover">Marketing</a>
+          <a class="link link-hover">Advertisement</a>
+        </nav>
+        <nav>
+          <h6 class="footer-title">Company</h6>
+          <a class="link link-hover">About us</a>
+          <a class="link link-hover">Contact</a>
+          <a class="link link-hover">Jobs</a>
+          <a class="link link-hover">Press kit</a>
+        </nav>
+        <nav>
+          <h6 class="footer-title">Legal</h6>
+          <a class="link link-hover">Terms of use</a>
+          <a class="link link-hover">Privacy policy</a>
+          <a class="link link-hover">Cookie policy</a>
+        </nav>
+      </footer>
+</body>
+</html>
+

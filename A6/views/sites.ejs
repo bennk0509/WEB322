@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Site Collection</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <%- include('partials/navbar', {page: "/sites"}) %>
+
+    <div class="container mx-auto p-6">
+        <div class="hero bg-base-200 p-6 rounded w-full text-center">
+            <div class="hero-content text-center ">
+                <div class="max-w-md">
+                  <h1 class="text-5xl font-bold">Site Collection <span class="text-base text-primary"><%=sites.length%></span> </h1>
+        
+                  <p class="py-6">Browse all National Historic Sites.  Click buttons to filter sites by region, e.g., 
+                    <a href="/sites?region=Atlantic region" class="btn btn-primary mt-2 btn-xs">Atlantic Region</a>
+                    <a href="/sites?region=Central Canada" class="btn btn-primary mt-2 btn-xs">Central Canada</a>
+                    <a href="/sites?region=Prairie Provinces" class="btn btn-primary mt-2 btn-xs">Prairie Provinces</a>
+                    <!-- <a href="/sites?region=West Coast" class="btn btn-primary mt-2 btn-xs">West Coast</a> -->
+                    <!-- <a href="/sites?region=North" class="btn btn-primary mt-2 btn-xs">North</a> -->
+                    <br> or by province or territory, e.g.,
+                    <!-- <a href="/sites?provinceOrTerritory=Alberta" class="btn btn-primary mt-2 btn-xs">Alberta</a> -->
+                    <!-- <a href="/sites?provinceOrTerritory=British Columbia" class="btn btn-primary mt-2 btn-xs">British Columbia</a> -->
+                    <a href="/sites?provinceOrTerritory=Ontario" class="btn btn-primary mt-2 btn-xs">Ontario</a>
+                    <a href="/sites?provinceOrTerritory=Quebec" class="btn btn-primary mt-2 btn-xs">Quebec</a>
+                    <a href="/sites?provinceOrTerritory=Yukon" class="btn btn-primary mt-2 btn-xs">Yukon</a>
+                    <!-- <a href="/sites?provinceOrTerritory=Northwest Territories" class="btn btn-primary mt-2 btn-xs">Northwest Territories</a>  -->
+                </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sites Table -->
+        <div class="overflow-x-auto mt-8">
+            <table class="table w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th>Image</th>
+                        <th>Site Name</th>
+                        <th>Date & Designation</th>
+                        <th>Location</th>
+                        <th>Region</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% sites.forEach(site => { %>
+                    <tr class="border-t">
+                        <td><img src="<%= site.image %>" alt="Site Image" class="w-20 h-20 rounded-md object-cover"></td>
+                        <td><%= site.site %></td>
+                        <td>
+                            Date: <%= site.date %> (<%= site.dateType %>) <br>
+                            Designated: <%= site.designated %>
+                        </td>
+                        <td>
+                            <%= site.location %>, 
+                            <a href="/sites?provinceOrTerritory=<%= site.ProvinceOrTerritory.name %>" 
+                            class="btn btn-sm btn-outline"><%= site.ProvinceOrTerritory.name %></a>
+                        </td>
+                        <td>
+                            <a href="/sites?region=<%= site.ProvinceOrTerritory.region %>" 
+                            class="btn btn-sm btn-outline"><%= site.ProvinceOrTerritory.region %></a>
+                        </td>
+                        <td>
+                            <a href="/sites/<%= site.siteId %>" class="btn btn-sm btn-primary">Details</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
